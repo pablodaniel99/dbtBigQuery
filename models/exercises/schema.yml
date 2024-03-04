@@ -1,0 +1,12 @@
+
+version: 2
+
+models:
+  - name: exercise_1
+    description: "View for exercise 1"
+    columns:
+      - name: orders_id
+        description: "The primary key for this view"
+        tests:
+          - unique
+          - not_null
