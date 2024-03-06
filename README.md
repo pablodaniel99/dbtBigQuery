@@ -19,6 +19,11 @@ Try running the following commands:
 #### Exercise 1: What is the number of orders in the year 2023?
 
 ```SQL
+/*
+This query creates a common table expression (CTE) named exercise_1 to calculate 
+the count of orders made in the year 2023 (using the EXTRACT function) from the dataset orders_recrutement
+The final query is used on dbt to show the result of the last operation/s, as in this case, the result is 2173
+*/
 WITH exercise_1 as ( 
 SELECT COUNT(*) as NumOrders
 FROM `dbt-bigquery-416012`.dataset.orders_recrutement
@@ -31,6 +36,12 @@ With this query we get a table which consis in just one record containing the nu
 
 #### Exercise 2: What is the number of orders per month in the year 2023?
 ```SQL
+/*
+This query creates a common table expression named exercise_2. 
+It extracts the year and month from the date_date column, assigns a month name based on the month number, and calculates the count of orders for each month. 
+The results are grouped by year and month name, then ordered accordingly. 
+Finally, the main query selects all columns from the exercise_2 table expression.
+*/
 WITH exercise_2 as (
 SELECT
    EXTRACT(YEAR FROM date_date) AS year,
@@ -61,6 +72,10 @@ SELECT * FROM exercise_2
 ```
 #### Exercise 3: What is the average number of products per order for each month of the year 2023?
 ```SQL
+/*
+Following the logic on the past exercise, this query calculates the average quantity of products per order for each month in 2023, 
+grouping the results by year and month. It assigns month names based on the extracted month numbers.
+*/
 WITH exercise_3 as (SELECT
   EXTRACT(YEAR FROM date_date) AS year,
   CASE 
@@ -92,6 +107,11 @@ SELECT * FROM exercise_3
 
 #### Exercise 4: Create a table (1 line per order) for all orders in the year 2022 and 2023; this table is similar to orders with an additional column: the qty_product column that gives the quantity of products in the order, for all orders in 2022 and 2023
 ```SQL
+/*
+This query selects specific columns from a dataset and calculates the total quantity of products per order using a subquery.
+This subquery is used to create a column name "qty_product" that shows the number of product per order
+It filters the data for the years 2022 and 2023, then presents the resulting table.
+*/
 WITH orders_qty_product AS
 (SELECT
   orders_id,
@@ -110,6 +130,12 @@ SELECT * FROM orders_qty_product
 
 #### Exercise 5 and 6: Create a table (1 line per order) for all orders of the year 2023 only; with an additional column: the order_segmentation column which gives the segment of this order
 ```SQL
+/*
+The query has two main parts. The first part selects customer and order information for the year 2023 from the orders_recrutement dataset. 
+The second part calculates the number of orders made by each customer in the previous year and categorizes them into segments based on their order history. 
+These two parts are then joined together based on the customers' IDs to produce the final result table.
+This final table will have 
+*/
 WITH orders_2023Segmentation AS
 (SELECT
     segmentClient.customers_id,
