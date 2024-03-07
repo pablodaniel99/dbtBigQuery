@@ -1,3 +1,9 @@
+/*
+This query selects specific columns from a dataset and calculates the total quantity of products per order using a subquery.
+This subquery is used to create a column name "qty_product" that shows the number of product per order
+It filters the data for the years 2022 and 2023, then presents the resulting table.
+*/
+
 WITH orders_qty_product AS
 (SELECT
   orders_id,

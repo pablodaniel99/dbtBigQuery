@@ -1,3 +1,10 @@
+/*
+This query creates a common table expression named exercise_2. 
+It extracts the year and month from the date_date column, assigns a month name based on the month number, and calculates the count of orders for each month. 
+The results are grouped by year and month name, then ordered accordingly. 
+Finally, the main query selects all columns from the exercise_2 table expression.
+*/
+
 WITH exercise_2 as (
 SELECT
    EXTRACT(YEAR FROM date_date) AS year,

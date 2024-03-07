@@ -1,3 +1,8 @@
+/*
+Following the logic on the past exercise, this query calculates the average quantity of products per order for each month in 2023, 
+grouping the results by year and month. It assigns month names based on the extracted month numbers.
+*/
+
 WITH exercise_3 as (SELECT
   EXTRACT(YEAR FROM date_date) AS year,
   CASE 
@@ -14,7 +19,7 @@ WITH exercise_3 as (SELECT
     WHEN EXTRACT(MONTH FROM date_date) = 11 THEN 'November'
     WHEN EXTRACT(MONTH FROM date_date) = 12 THEN 'December'
   END AS month_name,
-  AVG(qty) AS avg_products_per_order
+  AVG(qty) AS avg_products_order
 FROM
   dataset.sales_recrutement
 WHERE
